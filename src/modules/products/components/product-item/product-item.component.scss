@@ -1,0 +1,46 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 20px;
+    border-radius: 4px;
+    margin: 5px;
+    border: 1px solid #888888;
+    width: 100%;
+    cursor: pointer;
+
+    &Img {
+      width: 100%;
+      height: 80px;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      background-color: lightgray;
+    }
+
+    &InfoWrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    &Name {
+      margin-bottom: 5px;
+      font-size: 16px;
+      margin-right: 15px;
+    }
+
+    &Price {
+      color: green;
+      white-space: nowrap;
+    }
+  }
+}

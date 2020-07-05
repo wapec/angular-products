@@ -1,5 +1,12 @@
 <div class="wrapper">
-    <h1>List of all products</h1>
-    <!-- <products-list></products-list> -->
-    <!-- <pagination></pagination> -->
+  <app-products-header
+    [pagination]="(productsState$ | async).pagination"
+    (proccessPaginatorPage)="proccessPaginatorPage($event)"
+  ></app-products-header>
+  <ng-container *ngIf="(productsState$ | async)._loaded">
+    <app-products-filters></app-products-filters>
+    <app-products-list
+      [list]="(productsState$ | async).productsList"
+    ></app-products-list>
+  </ng-container>
 </div>

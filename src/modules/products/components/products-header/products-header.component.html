@@ -1,0 +1,12 @@
+<h1>
+  List of all products
+</h1>
+<ng-container *ngIf="pagination">
+  <mat-paginator
+    [length]="pagination.total"
+    [pageSize]="pagination.perPage"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="proccessPaginatorPageHandler($event)"
+  >
+  </mat-paginator>
+</ng-container>

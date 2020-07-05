@@ -1,0 +1,11 @@
+:host {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+
+  h1 {
+    font-size: 30px;
+    font-weight: bold;
+  }
+}

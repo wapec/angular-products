@@ -23,6 +23,9 @@
     "@angular/router": "~10.0.2",
     "@ngrx/effects": "^9.2.0",
     "@ngrx/store": "^9.2.0",
+    "@ngrx/store-devtools": "^9.2.0",
+    "@types/ramda": "^0.27.7",
+    "ramda": "^0.27.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"

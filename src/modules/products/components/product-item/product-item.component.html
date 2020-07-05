@@ -1,0 +1,9 @@
+<div class="item">
+  <img [src]="getItemThumbnail()" alt="{{ _item.sku }}" class="itemImg" />
+  <div class="itemInfoWrapper">
+    <span class="itemName">{{ _item.name }}</span>
+    <span class="itemPrice"
+      >{{ _item.price || "No price" }} {{ (_item.price && "€") || "" }}</span
+    >
+  </div>
+</div>
