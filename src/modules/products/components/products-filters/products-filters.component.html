@@ -1,3 +1,10 @@
-<div *ngFor="let filter of filter">
-    <span>{{ filter.name }}</span>
-</div>
+<ng-container *ngFor="let filter of _filters">
+  <div class="filter">
+    <span>{{ filter.title }}</span>
+    <div class="filterValues">
+      <button data-id="{{ value.id }}" *ngFor="let value of filter.values">
+        {{ value.title }}
+      </button>
+    </div>
+  </div>
+</ng-container>

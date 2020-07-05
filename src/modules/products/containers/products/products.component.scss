@@ -1,6 +1,4 @@
 :host {
-  
-
   .wrapper {
     max-width: 1400px;
     padding: 20px 20px 40px;
@@ -9,5 +7,12 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
+  }
+
+  .products {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    position: relative;
   }
 }

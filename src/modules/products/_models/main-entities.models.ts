@@ -1,7 +1,7 @@
 export interface IProductFilter {
   id: string;
   title: string;
-  values: any[]; // TODO: Specify
+  values: Array<{ id: string; title: string; active: boolean }>;
 }
 
 export interface IProductLink {

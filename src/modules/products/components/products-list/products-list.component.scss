@@ -1,7 +1,9 @@
 :host {
   .list {
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: calc(100% / 4 - 10px) calc(100% / 4 - 10px) calc(
+        100% / 4 - 10px
+      ) calc(100% / 4 - 10px);
     grid-template-rows: auto;
     grid-gap: 10px;
   }

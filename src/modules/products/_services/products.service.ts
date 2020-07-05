@@ -16,8 +16,14 @@ export class ProductsService {
   getProducts(
     params: GetProductsParams
   ): Observable<{ products: IProduct[]; pagination: IPagination }> {
-    const { page = 1, perPage = 50 } = params;
-    const [from, to] = [perPage * page - 1, perPage * (page + 1) - 1];
+    console.log(params);
+    const { page, perPage } = params;
+    const [from, to] = [
+      page === 1 ? 0 : perPage * (page - 1),
+      page === 1 ? perPage - 1 : perPage * page - 1,
+    ];
+
+    console.log(from, to);
 
     return this._http.get('/assets/products.json').pipe(
       map((data: { items: IProduct[] }) => {
