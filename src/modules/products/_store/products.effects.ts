@@ -11,8 +11,6 @@ import {
   GET_PRODUCTS,
   GET_PRODUCTS_SUCCESS,
   GET_PRODUCTS_FAIL,
-  SET_FILTER,
-  ISetFilterAction,
 } from './products.types';
 
 @Injectable()

@@ -1,5 +1,3 @@
-import { mergeDeepRight, concat } from 'ramda';
-
 import {
   IProduct,
   IProductFilter,
@@ -53,8 +51,7 @@ export const defineFiltersHelper = (list: IProduct[]): IProductFilter[] => {
         if (foundFilter) {
           acc.forEach(
             (item) =>
-              item.id === foundFilter.id &&
-              item.values.push(...newAttributes)
+              item.id === foundFilter.id && item.values.push(...newAttributes)
           );
         } else {
           acc.push({
@@ -71,5 +68,5 @@ export const defineFiltersHelper = (list: IProduct[]): IProductFilter[] => {
   return filters.map((item) => ({
     ...item,
     values: dropRepeatsByKey('id', item.values),
-  }));;
+  }));
 };

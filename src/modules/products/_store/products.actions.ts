@@ -3,7 +3,6 @@ import {
   GET_PRODUCTS,
   ISetFilterAction,
   SET_FILTER,
-  IClearFiltersAction,
   CLEAR_FILTERS,
 } from './products.types';
 
