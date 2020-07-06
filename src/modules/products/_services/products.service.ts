@@ -19,7 +19,6 @@ export class ProductsService {
   getProducts(
     params: GetProductsParams
   ): Observable<{ products: IProduct[]; pagination: IPagination }> {
-    console.log(params);
     const { page, perPage, filters } = params;
     const [from, to] = [
       page === 1 ? 0 : perPage * (page - 1),
@@ -38,15 +37,25 @@ export class ProductsService {
             filteredProducts = [
               ...filteredProducts,
               ...products.filter((item) => {
+                // Price special case
+                if (fieldName === 'price') {
+                  const [lower, upper] = fieldValue.split('/');
+                  const priceCondition =
+                    item.price && item.price > +lower && item.price < +upper;
+                  return priceCondition;
+                }
+
+                // Other fields process
                 const foundMatch = find(propEq('attribute_code', fieldName))(
                   item.custom_attributes
                 ) as IProductCustomAttribute;
-                // console.log(foundMatch);
-                return foundMatch.value.includes(fieldValue);
+
+                const foundMatchCondition =
+                  foundMatch && foundMatch.value.includes(fieldValue);
+                return foundMatchCondition;
               }),
             ];
           });
-          console.log(filteredProducts);
           products = filteredProducts;
         }
         const pagination = { page, perPage, total: items.length };

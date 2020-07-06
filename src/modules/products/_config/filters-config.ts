@@ -6,17 +6,17 @@ export const DEFAULT_FILTERS_CONFIG: IProductFilter[] = [
     title: 'Price',
     values: [
       {
-        id: '0-100',
+        id: 'price-0/100',
         title: 'Under 100',
         active: false,
       },
       {
-        id: '100-200',
+        id: 'price-100/200',
         title: '100 to 200',
         active: false,
       },
       {
-        id: '200-Infinity',
+        id: 'price-200/Infinity',
         title: 'Above 200',
         active: false,
       },

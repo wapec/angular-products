@@ -46,7 +46,6 @@ export class ProductsComponent {
   }
 
   onFilterClick(id: string) {
-    console.log(id);
     this._productsStore.dispatch(setFilterAction(id));
     this.productsPagination$ = this._productsStore.select(
       productsPaginationSelector
@@ -54,7 +53,6 @@ export class ProductsComponent {
     this.productsFilters$ = this._productsStore.select(productsFiltersSelector);
     this.productsPagination$
       .subscribe((pagination) => {
-        console.log(pagination);
         const { page, perPage } = pagination;
 
         this.productsFilters$
