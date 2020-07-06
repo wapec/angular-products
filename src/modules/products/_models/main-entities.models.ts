@@ -15,7 +15,7 @@ export interface IProductLink {
 
 export interface IProductCustomAttribute {
   attribute_code: string; // TODO: Specify
-  value: string;
+  value: string[] | string;
 }
 
 export interface IProduct {

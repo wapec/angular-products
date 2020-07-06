@@ -4,7 +4,10 @@
     (proccessPaginatorPage)="proccessPaginatorPage($event)"
   ></app-products-header>
   <div *ngIf="(productsState$ | async)._loaded" class="products">
-    <app-products-filters></app-products-filters>
+    <app-products-filters
+      [list]="(productsState$ | async).productsList"
+      (onFilterClick)="onFilterClick($event)"
+    ></app-products-filters>
     <app-products-list
       [list]="(productsState$ | async).productsList"
     ></app-products-list>

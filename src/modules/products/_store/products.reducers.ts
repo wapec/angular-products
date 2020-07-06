@@ -4,17 +4,22 @@ import {
   GET_PRODUCTS,
   GET_PRODUCTS_SUCCESS,
   GET_PRODUCTS_FAIL,
+  SET_FILTER,
 } from './products.types';
 
 const initialState: IProductsState = {
   productsList: [],
   pagination: null,
+  filters: [],
   _error: null,
   _pending: false,
   _loaded: false,
 };
 
-export const productsReducer = (state = initialState, action: ProductsTypes) => {
+export const productsReducer = (
+  state = initialState,
+  action: ProductsTypes
+) => {
   switch (action.type) {
     case GET_PRODUCTS:
       return {
@@ -36,6 +41,11 @@ export const productsReducer = (state = initialState, action: ProductsTypes) => 
         _pending: false,
         _loaded: false,
         _error: action.payload,
+      };
+    case SET_FILTER:
+      return {
+        ...state,
+        filters: [...state.filters, action.payload],
       };
 
     default:

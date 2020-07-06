@@ -11,6 +11,7 @@ export interface IPagination {
 export interface IProductsState {
   productsList: IProduct[];
   pagination: IPagination | null;
+  filters: string[];
   _pending: boolean;
   _loaded: boolean;
   _error: HttpErrorResponse;
@@ -24,6 +25,7 @@ export const GET_PRODUCTS_FAIL = '[@@Products] GET_PRODUCTS_FAIL';
 export type GetProductsParams = {
   page: number;
   perPage: number;
+  filter: string[];
 };
 
 export interface IGetProductsAction {
@@ -47,7 +49,16 @@ export interface IGetProductsActionFail {
   payload: HttpErrorResponse;
 }
 
+// SET_FILTER
+export const SET_FILTER = '[@@Products] SET_FILTER';
+
+export interface ISetFilterAction {
+  type: typeof SET_FILTER;
+  payload: string;
+}
+
 export type ProductsTypes =
+  | ISetFilterAction
   | IGetProductsAction
   | IGetProductsActionSuccess
   | IGetProductsActionFail;

@@ -15,8 +15,6 @@ export class ProductsListComponent {
     this._list = payload;
   }
 
-  ngOnInit() {}
-
   isEmptyList() {
     return isEmpty(this._list);
   }

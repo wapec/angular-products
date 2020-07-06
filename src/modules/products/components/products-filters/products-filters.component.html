@@ -2,7 +2,11 @@
   <div class="filter">
     <span>{{ filter.title }}</span>
     <div class="filterValues">
-      <button data-id="{{ value.id }}" *ngFor="let value of filter.values">
+      <button
+        data-id="{{ value.id }}"
+        *ngFor="let value of filter.values"
+        (click)="filterClick(value.id)"
+      >
         {{ value.title }}
       </button>
     </div>

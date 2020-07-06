@@ -5,7 +5,10 @@ import { PageEvent } from '@angular/material/paginator';
 
 import { DEFAULT_GET_PRODUCTS_PARAMS } from '../../_config/constants';
 import { IProductsState } from '../../_store/products.types';
-import { getProductsAction } from '../../_store/products.actions';
+import {
+  getProductsAction,
+  setFilterAction,
+} from '../../_store/products.actions';
 import { productsStateSelector } from '../../_store/products.selectors';
 
 @Component({
@@ -28,7 +31,12 @@ export class ProductsComponent {
   proccessPaginatorPage(event: PageEvent) {
     const { pageIndex, pageSize } = event;
     this._productsStore.dispatch(
-      getProductsAction({ data: { page: pageIndex + 1, perPage: pageSize } })
+      getProductsAction({ data: { page: pageIndex + 1, perPage: pageSize, filter: [] } })
     );
+  }
+
+  onFilterClick(id: string) {
+    console.log(id);
+    this._productsStore.dispatch(setFilterAction(id));
   }
 }

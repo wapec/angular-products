@@ -23,7 +23,7 @@ export const DEFAULT_FILTERS_CONFIG: IProductFilter[] = [
     ],
   },
   {
-    id: 'category',
+    id: 'category_ids',
     title: 'Category',
     values: [],
   },

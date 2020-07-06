@@ -11,6 +11,9 @@
   position: sticky;
   top: 50px;
   height: fit-content;
+  max-height: 80vh;
+  overflow: auto;
+  text-transform: uppercase;
 
   .filter {
     font-size: 16px;
@@ -31,6 +34,7 @@
         border: 1px solid #cfb6b6;
         cursor: pointer;
         margin: 3px;
+        text-transform: none;
       }
     }
   }
