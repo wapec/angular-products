@@ -20,3 +20,8 @@ export const productsFiltersSelector = createSelector(
   productsStateSelector,
   (state: IProductsState) => state.filters
 );
+
+export const productsLoadedSelector = createSelector(
+  productsStateSelector,
+  (state: IProductsState) => state._loaded
+);

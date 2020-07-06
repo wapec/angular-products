@@ -3,14 +3,12 @@
     [pagination]="productsPagination$ | async"
     (proccessPaginatorPage)="proccessPaginatorPage($event)"
   ></app-products-header>
-  <div *ngIf="(productsState$ | async)._loaded" class="products">
+  <div *ngIf="productsLoaded$ | async" class="products">
     <app-products-filters
-      [list]="(productsState$ | async).productsList"
+      [list]="productsList$ | async"
       [filters]="productsFilters$ | async"
       (onFilterClick)="onFilterClick($event)"
     ></app-products-filters>
-    <app-products-list
-      [list]="(productsState$ | async).productsList"
-    ></app-products-list>
+    <app-products-list [list]="productsList$ | async"></app-products-list>
   </div>
 </div>

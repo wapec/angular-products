@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { PageEvent } from '@angular/material/paginator';
 
 import { DEFAULT_GET_PRODUCTS_PARAMS } from '../../_config/constants';
+import { IProduct } from '../../_models/main-entities.models';
 import { IProductsState, IPagination } from '../../_store/products.types';
 import {
   getProductsAction,
@@ -11,9 +12,10 @@ import {
   clearFiltersAction,
 } from '../../_store/products.actions';
 import {
-  productsStateSelector,
+  productsListSelector,
   productsPaginationSelector,
   productsFiltersSelector,
+  productsLoadedSelector,
 } from '../../_store/products.selectors';
 
 @Component({
@@ -22,17 +24,25 @@ import {
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent {
-  productsState$: Observable<IProductsState>;
+  productsList$: Observable<IProduct[]>;
   productsPagination$: Observable<IPagination>;
   productsFilters$: Observable<string[]>;
-
+  productsLoaded$: Observable<boolean>;
+  
   constructor(private _productsStore: Store<IProductsState>) {}
 
   ngOnInit() {
     this._productsStore.dispatch(
       getProductsAction({ data: DEFAULT_GET_PRODUCTS_PARAMS })
     );
-    this.productsState$ = this._productsStore.select(productsStateSelector);
+
+    // Selectors
+    this.productsList$ = this._productsStore.select(productsListSelector);
+    this.productsPagination$ = this._productsStore.select(
+      productsPaginationSelector
+    );
+    this.productsFilters$ = this._productsStore.select(productsFiltersSelector);
+    this.productsLoaded$ = this._productsStore.select(productsLoadedSelector);
   }
 
   proccessPaginatorPage(event: PageEvent) {
@@ -47,10 +57,6 @@ export class ProductsComponent {
 
   onFilterClick(id: string) {
     this._productsStore.dispatch(setFilterAction(id));
-    this.productsPagination$ = this._productsStore.select(
-      productsPaginationSelector
-    );
-    this.productsFilters$ = this._productsStore.select(productsFiltersSelector);
     this.productsPagination$
       .subscribe((pagination) => {
         const { page, perPage } = pagination;
