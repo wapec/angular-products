@@ -19,7 +19,8 @@ export class ProductsService {
   getProducts(
     params: GetProductsParams
   ): Observable<{ products: IProduct[]; pagination: IPagination }> {
-    const { page, perPage, filter } = params;
+    console.log(params);
+    const { page, perPage, filters } = params;
     const [from, to] = [
       page === 1 ? 0 : perPage * (page - 1),
       page === 1 ? perPage - 1 : perPage * page - 1,
@@ -30,18 +31,24 @@ export class ProductsService {
         const { items } = data;
 
         let products = items.slice(from, to);
-        // if (!isEmpty(filter)) {
-        //   console.log(filter);
-        //   products = products.filter((item) =>
-        //     filter.some((f) => {
-        //       const [fieldName, fieldValue] = f.split('-');
-        //       const foundMatch = find(propEq('attribute_code', fieldName))(
-        //         item.custom_attributes
-        //       ) as IProductCustomAttribute;
-        //       return foundMatch.value === fieldValue;
-        //     })
-        //   );
-        // }
+        if (!isEmpty(filters)) {
+          let filteredProducts = [];
+          filters.some((f) => {
+            const [fieldName, fieldValue] = f.split('-');
+            filteredProducts = [
+              ...filteredProducts,
+              ...products.filter((item) => {
+                const foundMatch = find(propEq('attribute_code', fieldName))(
+                  item.custom_attributes
+                ) as IProductCustomAttribute;
+                // console.log(foundMatch);
+                return foundMatch.value.includes(fieldValue);
+              }),
+            ];
+          });
+          console.log(filteredProducts);
+          products = filteredProducts;
+        }
         const pagination = { page, perPage, total: items.length };
         return {
           products,

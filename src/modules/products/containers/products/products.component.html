@@ -1,11 +1,12 @@
 <div class="wrapper">
   <app-products-header
-    [pagination]="(productsState$ | async).pagination"
+    [pagination]="productsPagination$ | async"
     (proccessPaginatorPage)="proccessPaginatorPage($event)"
   ></app-products-header>
   <div *ngIf="(productsState$ | async)._loaded" class="products">
     <app-products-filters
       [list]="(productsState$ | async).productsList"
+      [filters]="productsFilters$ | async"
       (onFilterClick)="onFilterClick($event)"
     ></app-products-filters>
     <app-products-list

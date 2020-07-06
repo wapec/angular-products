@@ -11,6 +11,8 @@ import {
   GET_PRODUCTS,
   GET_PRODUCTS_SUCCESS,
   GET_PRODUCTS_FAIL,
+  SET_FILTER,
+  ISetFilterAction,
 } from './products.types';
 
 @Injectable()
@@ -24,8 +26,8 @@ export class ProductsEffects {
   getProductsEffect = this._actions.pipe(
     ofType<IGetProductsAction>(GET_PRODUCTS),
     map((action: IGetProductsAction) => action.payload),
-    switchMap(({ data: { page, perPage } }) => {
-      return this._productsService.getProducts({ page, perPage }).pipe(
+    switchMap(({ data: { page, perPage, filters } }) => {
+      return this._productsService.getProducts({ page, perPage, filters }).pipe(
         map((payload: IGetProductsActionSuccess['payload']) => ({
           type: GET_PRODUCTS_SUCCESS,
           payload,

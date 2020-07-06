@@ -35,6 +35,10 @@
         cursor: pointer;
         margin: 3px;
         text-transform: none;
+
+        &.active {
+          background-color: lightskyblue;
+        }
       }
     }
   }

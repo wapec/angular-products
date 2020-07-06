@@ -10,3 +10,13 @@ export const productsListSelector = createSelector(
   productsStateSelector,
   (state: IProductsState) => state.productsList
 );
+
+export const productsPaginationSelector = createSelector(
+  productsStateSelector,
+  (state: IProductsState) => state.pagination
+);
+
+export const productsFiltersSelector = createSelector(
+  productsStateSelector,
+  (state: IProductsState) => state.filters
+);

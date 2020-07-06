@@ -25,7 +25,7 @@ export const GET_PRODUCTS_FAIL = '[@@Products] GET_PRODUCTS_FAIL';
 export type GetProductsParams = {
   page: number;
   perPage: number;
-  filter: string[];
+  filters: string[];
 };
 
 export interface IGetProductsAction {
@@ -57,7 +57,15 @@ export interface ISetFilterAction {
   payload: string;
 }
 
+// CLEAR_FILTERS
+export const CLEAR_FILTERS = '[@@Products] CLEAR_FILTERS';
+
+export interface IClearFiltersAction {
+  type: typeof CLEAR_FILTERS;
+}
+
 export type ProductsTypes =
+  | IClearFiltersAction
   | ISetFilterAction
   | IGetProductsAction
   | IGetProductsActionSuccess

@@ -10,15 +10,18 @@ import { defineFiltersHelper } from '../../_helpers/filters-helper';
 })
 export class ProductsFiltersComponent {
   _filters: IProductFilter[] = [];
+  _filtersRedux: string[] = [];
   _list: IProduct[] = [];
 
   @Input() set list(payload: IProduct[]) {
     this._list = payload;
   }
+  @Input() set filters(payload: string[]) {
+    this._filtersRedux = payload;
+  }
   @Output() onFilterClick = new EventEmitter<string>();
 
   ngOnInit() {
-    console.log('ngOnInit');
     if (this._list) {
       this._filters = defineFiltersHelper(this._list);
     }

@@ -1,3 +1,6 @@
 <div *ngIf="!isEmptyList()" class="list">
   <app-product-item *ngFor="let item of _list" [item]="item"></app-product-item>
 </div>
+<div *ngIf="isEmptyList()" class="list">
+  <span>No Data</span>
+</div>

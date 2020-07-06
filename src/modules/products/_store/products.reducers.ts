@@ -1,3 +1,5 @@
+import { without } from 'ramda';
+
 import {
   IProductsState,
   ProductsTypes,
@@ -5,6 +7,7 @@ import {
   GET_PRODUCTS_SUCCESS,
   GET_PRODUCTS_FAIL,
   SET_FILTER,
+  CLEAR_FILTERS,
 } from './products.types';
 
 const initialState: IProductsState = {
@@ -45,7 +48,14 @@ export const productsReducer = (
     case SET_FILTER:
       return {
         ...state,
-        filters: [...state.filters, action.payload],
+        filters: state.filters.includes(action.payload)
+          ? without([action.payload], state.filters) || []
+          : [...state.filters, action.payload],
+      };
+    case CLEAR_FILTERS:
+      return {
+        ...state,
+        filters: [],
       };
 
     default:
