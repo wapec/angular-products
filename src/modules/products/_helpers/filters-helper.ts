@@ -26,9 +26,7 @@ export const defineFiltersHelper = (list: IProduct[]): IProductFilter[] => {
   let filters = DEFAULT_FILTERS_CONFIG;
 
   filters = list.reduce((acc: IProductFilter[], curr: IProduct) => {
-    const attributes = curr.custom_attributes.filter((item) =>
-      checkAttributeValue(item)
-    );
+    const attributes = curr.custom_attributes.filter(checkAttributeValue);
 
     // Set new attributes to filters
     attributes.forEach((attribute) => {
@@ -62,6 +60,7 @@ export const defineFiltersHelper = (list: IProduct[]): IProductFilter[] => {
         }
       }
     });
+
     return acc;
   }, filters);
 
